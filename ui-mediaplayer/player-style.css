@@ -1,0 +1,152 @@
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+:root {
+  --wrapperBg: #2b3238;
+  --wrapperColor: #dedede;
+  --borderColor: #1e2327;
+  --tweaksColor: #4287f5;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1vw;
+  background-color: var(--wrapperBg);
+  color: var(--wrapperColor);
+  font-family: "Langar", Arial;
+}
+#wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "wip search library"
+    "wip search library"
+    "queue search library"
+    "queue player library";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.material-icons:active {
+  color: var(--tweaksColor);
+  text-shadow: 0 0 1vw var(--tweaksColor);
+}
+
+.el {
+  box-sizing: border-box;
+}
+
+#search {
+  grid-area: search;
+  border-right: 0.3vw solid var(--borderColor);
+  border-bottom: 0.3vw solid var(--borderColor);
+}
+#searchWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 5% auto;
+}
+#searchBar {
+  margin: auto;
+  width: 50%;
+  height: 2vw;
+  position: relative;
+  padding: 0.1vw;
+  border: 0.2vw solid var(--borderColor);
+}
+#searchBar > input {
+  width: calc(100% - 2vw);
+  height: 100%;
+  padding: 0 2vw 0 0;
+  color: var(--wrapperBg);
+  background-color: var(--wrapperColor);
+  border: none;
+}
+#searchBar > span {
+  position: absolute;
+  top: 0.1vw;
+  right: 0;
+  height: 100%;
+  font-size: 2vw;
+  color: var(--wrapperBg);
+  cursor: pointer;
+  user-select: none;
+}
+#searchOutput {
+  width: 100%;
+  margin: 2% auto;
+  height: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  align-items: baseline;
+}
+.results {
+  width: calc(100% / 3);
+  text-align: center;
+  margin: 2% auto;
+}
+.results > div {
+  height: 70%;
+  width: 70%;
+  padding: 1vw 1vw;
+  margin: auto;
+  border-radius: 5px;
+  background-color: var(--borderColor);
+  user-select: none;
+  cursor: pointer;
+}
+
+#player {
+  grid-area: player;
+  border-right: 0.3vw solid var(--borderColor);
+  font-size: 2vw;
+}
+#titleDisplay {
+  margin: 2% auto;
+  width: 100%;
+  text-align: center;
+}
+#timelineWrapper {
+  width: 100%;
+  font-size: 1vw;
+  text-align: center;
+  user-select: none;
+}
+#timeline {
+  margin: auto;
+  width: 100%;
+}
+#controls {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 2% auto;
+  user-select: none;
+}
+#controls > span {
+  font-size: 3vw;
+  user-select: none;
+  cursor: pointer;
+}
+
+#library {
+  grid-area: library;
+}
+
+#queue {
+  grid-area: queue;
+  border-right: 0.3vw solid var(--borderColor);
+}
+
+#wip {
+  grid-area: wip;
+  border-right: 0.3vw solid var(--borderColor);
+  border-bottom: 0.3vw solid var(--borderColor);
+}
+
+#colors {
+  grid-area: colors;
+  border-right: 0.3vw solid var(--borderColor);
+  border-bottom: 0.3vw solid var(--borderColor);
+}

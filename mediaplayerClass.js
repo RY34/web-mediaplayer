@@ -1,4 +1,4 @@
-import {playAudio} from "/modules/playAudio.js";
+import {playAudio} from "./modules/playAudio.js";
 
 class mediaplayerClass {};
 

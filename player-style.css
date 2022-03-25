@@ -24,6 +24,7 @@ body {
     "queue player library";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  overflow: hidden;
 }
 
 .material-icons:active {
@@ -112,11 +113,33 @@ body {
   font-size: 1vw;
   text-align: center;
   user-select: none;
+  position: relative;
+  top: 0;
 }
 #timeline {
+  width: 95%;
+  height: 1vh;
   margin: auto;
-  width: 100%;
+  background-color: var(--borderColor);
+  position: relative;
+  top: 0;
 }
+#timeline-color {
+  width: 0;
+  margin: 0;
+  height: 100%;
+  background-color: greenyellow;
+  position: relative;
+  top: 0;
+}
+#pointer {
+  width: 1vh;
+  height: 1vh;
+  position: absolute;
+  right: 0;
+  background-color: mediumseagreen;
+}
+
 #controls {
   display: block;
   width: 100%;

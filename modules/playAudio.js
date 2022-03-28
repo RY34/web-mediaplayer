@@ -6,6 +6,7 @@ function playAudio() {
     this.playBtn.innerHTML = "pause";
     this.playing = true;
     this.timelineAnimation.play();
+    
 
   }
   else {
@@ -13,10 +14,11 @@ function playAudio() {
     this.audio.pause();
     this.playBtn.innerHTML = "play_arrow";
     this.playing = false;
+    if(this.timelineAnimation.playState=="running")
     this.timelineAnimation.pause();
   }
 
-  this.audio.addEventListener("ended", function(){this.playBtn.innerHTML = "play_arrow";})
+  this.audio.addEventListener("ended", e => {this.playBtn.innerHTML = "play_arrow";})
 }
 
-export {playAudio};
+export  { playAudio };

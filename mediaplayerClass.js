@@ -1,4 +1,5 @@
-import {playAudio} from "./modules/playAudio.js";
+import { playAudio } from "./modules/playAudio.js";
+import { timelineHandler } from "./modules/timelineHandler.js";
 
 class mediaplayerClass {};
 
@@ -10,5 +11,6 @@ mediaplayerClass.prototype.playing = false;
 //methods
 
 mediaplayerClass.prototype.playAudio = playAudio;
+mediaplayerClass.prototype.timelineHandler = timelineHandler;
 
-export {mediaplayerClass}
+export { mediaplayerClass }

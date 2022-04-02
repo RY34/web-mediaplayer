@@ -3,7 +3,7 @@ import { mediaplayerClass } from "./mediaplayerClass.js"
 document.addEventListener("DOMContentLoaded", function () {
     
     let playBtn = document.querySelector("#play");
-    let timeline = document.querySelector("#timeline"); // for later
+    let timeline = document.querySelector("#timeline");
     let timelineColor = document.querySelector("#timeline-color");
     //let pointer = document.querySelector("#pointer"); // for later
     let titleDisplay = document.querySelector("#titleDisplay");
@@ -12,60 +12,57 @@ document.addEventListener("DOMContentLoaded", function () {
     Object.defineProperty(mediaplayer, "playBtn", { value: playBtn });
     Object.defineProperty(mediaplayer, "timelineColor", { value: timelineColor });
     Object.defineProperty(mediaplayer, "titleDisplay", { value: titleDisplay });
+    Object.defineProperty(mediaplayer, "timeline", { value: timeline });
 
     mediaplayer.audio.setAttribute("src", "audio_files/1.mp3");
 
     mediaplayer.audio.addEventListener("canplaythrough", function () {
         
-        mediaplayer.timelineHandler(0, mediaplayer.audio.duration*1000);
-       /* let timelineAnimation = timelineColor.animate([
-            {
-                width: "0%" //fixed animation, will be changed later, just for tests
-            },
-            {
-                width: "100%"
-            }
-        ], { duration: mediaplayer.audio.duration * 1000 });
-        timelineAnimation.pause();
-
-        Object.defineProperty(mediaplayer, "timelineAnimation", { value: timelineAnimation });*/
-        timeline.addEventListener("click", function divWidth(event) {
-            
-            mediaplayer.timelineAnimation.cancel();
-            let rect = timeline.getBoundingClientRect();
-            let rectX = Math.floor(rect.left);
-            let width = Math.floor(rect.width);
-            let cursorX = Math.floor(event.clientX);
-            let posX = cursorX - rectX;
-            let widthLeft = width - posX;
-            let timelineNewWidth = Math.floor((posX * 100) / width);
-            let audioDur = Math.floor(mediaplayer.audio.duration);
-            let timelineLeft = Math.floor(((audioDur * widthLeft) / width) * 1000);
-            let audioCurrentTime = Math.floor((audioDur * posX) / width);
-
-            mediaplayer.audio.currentTime = audioCurrentTime;
-
-            timelineColor.style.width = timelineNewWidth + "%";
-            delete mediaplayer.timelineAnimation;
-            mediaplayer.timelineHandler(timelineNewWidth, timelineLeft);
-
-            if (mediaplayer.audio.paused == false) {
-                mediaplayer.timelineAnimation.play();
-            }
-        });
+        if(mediaplayer.timelineAnimation === null)
+            mediaplayer.timelineAnimationSetUp(0, mediaplayer.audio.duration * 1000);
+        this.volume = 0.1;
+    });
         
-        mediaplayer.audio.addEventListener("ended", e => { //for now, to be changed later into module
-            
-            mediaplayer.playBtn.innerHTML = "play_arrow";
-            mediaplayer.timelineAnimation.cancel();
-            timelineColor.style.width = "0%";
+    mediaplayer.audio.addEventListener("ended", e => { //for now, to be changed later into module
+        
+        console.log("song has ended");
+        mediaplayer.playBtn.innerHTML = "play_arrow";
+        timelineColor.style.width = "0%";
+        mediaplayer.audio.currentTime = 0;
+        mediaplayer.timelineAnimation.currentTime = 0;
+        mediaplayer.playing = false;
 
-        });
     });
     
     
 
     playBtn.addEventListener("click", function () { mediaplayer.playAudio() });
+    
+    function timelineLauncher(event) { mediaplayer.timelineManager(event) }
+    timeline.addEventListener("mousedown", function (event) {
+
+        document.addEventListener("mousemove", timelineLauncher);
+
+        document.addEventListener("mouseup", function mUp() {
+            
+            document.removeEventListener("mousemove", timelineLauncher);
+            if (this.playing == true)
+                this.timelineAnimation.play();
+            document.removeEventListener("mouseup", mUp);
+        });
+        
+    });
+    timeline.addEventListener("mousedown", function (event) {
+       
+        mediaplayer.timelineManager(event);
+        document.addEventListener("mouseup", function mUp() {
+            
+            document.removeEventListener("mousemove", timelineLauncher);
+            if (this.playing == true)
+                this.timelineAnimation.play();
+            document.removeEventListener("mouseup", mUp);
+        });
+    });
     
     /*this will be handler for changing colors of UI, left for later date
     

@@ -7,7 +7,6 @@ function playAudio() {
     this.playing = true;
     this.timelineAnimation.play();
     
-
   }
   else {
     
@@ -17,8 +16,6 @@ function playAudio() {
     if(this.timelineAnimation.playState=="running")
     this.timelineAnimation.pause();
   }
-
-  this.audio.addEventListener("ended", e => {this.playBtn.innerHTML = "play_arrow";})
 }
 
 export  { playAudio };

@@ -5,14 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
     let playBtn = document.querySelector("#play");
     let timeline = document.querySelector("#timeline");
     let timelineColor = document.querySelector("#timeline-color");
-    //let pointer = document.querySelector("#pointer"); // for later
     let titleDisplay = document.querySelector("#titleDisplay");
+    let timerDisplay = document.querySelector("#timer");
     
     const mediaplayer = new mediaplayerClass();
     Object.defineProperty(mediaplayer, "playBtn", { value: playBtn });
     Object.defineProperty(mediaplayer, "timelineColor", { value: timelineColor });
     Object.defineProperty(mediaplayer, "titleDisplay", { value: titleDisplay });
     Object.defineProperty(mediaplayer, "timeline", { value: timeline });
+    Object.defineProperty(mediaplayer, "timerDisplay", { value: timerDisplay });
 
     mediaplayer.audio.setAttribute("src", "audio_files/1.mp3");
 
@@ -25,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
     mediaplayer.audio.addEventListener("ended", e => { //for now, to be changed later into module
         
-        console.log("song has ended");
         mediaplayer.playBtn.innerHTML = "play_arrow";
         timelineColor.style.width = "0%";
         mediaplayer.audio.currentTime = 0;
@@ -58,12 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
         document.addEventListener("mouseup", function mUp() {
             
             document.removeEventListener("mousemove", timelineLauncher);
-            if (this.playing == true)
-                this.timelineAnimation.play();
             document.removeEventListener("mouseup", mUp);
         });
     });
-    
+
+    mediaplayer.audio.addEventListener("timeupdate", function () { mediaplayer.timer() });
+    mediaplayer.audio.addEventListener("play", function () { mediaplayer.timelineAnimation.play() });
+    mediaplayer.audio.addEventListener("pause", function () { mediaplayer.timelineAnimation.pause() });
     /*this will be handler for changing colors of UI, left for later date
     
     let root = document.querySelector(":root");

@@ -12,8 +12,10 @@ function timelineManager(event) {
     audioDur = this.audio.duration;
     audioCurrentTime = (audioDur * posX) / rectWidth;
 
-    if(timelineNewWidth <= 100)
+    if (timelineNewWidth <= 100)
         this.timelineColor.style.width = timelineNewWidth + "%";
+    else if (timelineNewWidth > 100)
+        this.timelineColor.style.width = "100%";
     
     let self = this;
 

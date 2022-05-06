@@ -1,7 +1,5 @@
 function timer() {
     
-    this.s = parseInt(this.audio.currentTime);
-
     this.s = parseInt(this.audio.currentTime % 60)
     this.m = parseInt((this.audio.currentTime / 60) % 60);
 

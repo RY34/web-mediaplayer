@@ -12,10 +12,11 @@ body {
   background-color: var(--wrapperBg);
   color: var(--wrapperColor);
   font-family: "Langar", Arial;
+  overflow: hidden;
 }
-#wrapper {
+main {
   width: 100vw;
-  height: 100vh;
+  height: 95vh;
   display: grid;
   grid-template-areas:
     "wip search library"
@@ -24,7 +25,6 @@ body {
     "queue player library";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  overflow: hidden;
 }
 
 .material-icons:active {
@@ -36,34 +36,33 @@ body {
   box-sizing: border-box;
 }
 
-#search {
+.search {
   grid-area: search;
   border-right: 0.3vw solid var(--borderColor);
   border-bottom: 0.3vw solid var(--borderColor);
-}
-#searchWrapper {
-  width: 100%;
-  height: 100%;
   position: relative;
-  margin: 5% auto;
 }
-#searchBar {
-  margin: auto;
+.searchBar {
+  margin: 5% auto;
   width: 50%;
   height: 2vw;
   position: relative;
   padding: 0.1vw;
   border: 0.2vw solid var(--borderColor);
 }
-#searchBar > input {
-  width: calc(100% - 2vw);
+.searchBar > input {
+  width: 100%;
   height: 100%;
   padding: 0 2vw 0 0;
   color: var(--wrapperBg);
   background-color: var(--wrapperColor);
   border: none;
 }
-#searchBar > span {
+.searchBar > input:focus {
+  outline: none;
+  box-shadow: 0 0 1vw var(--tweaksColor);
+}
+.searchBar > span {
   position: absolute;
   top: 0.1vw;
   right: 0;
@@ -73,7 +72,7 @@ body {
   cursor: pointer;
   user-select: none;
 }
-#searchOutput {
+.searchOutput {
   width: 100%;
   margin: 2% auto;
   height: 85%;
@@ -81,6 +80,7 @@ body {
   flex-wrap: wrap;
   overflow-y: scroll;
   align-items: baseline;
+  scrollbar-color: var(--tweaksColor) transparent;
 }
 .results {
   width: calc(100% / 3);
@@ -98,17 +98,17 @@ body {
   cursor: pointer;
 }
 
-#player {
+.player {
   grid-area: player;
   border-right: 0.3vw solid var(--borderColor);
   font-size: 2vw;
 }
-#titleDisplay {
+.titleDisplay {
   margin: 2% auto;
   width: 100%;
   text-align: center;
 }
-#timelineWrapper {
+.timelineWrapper {
   width: 100%;
   font-size: 1vw;
   text-align: center;
@@ -116,7 +116,7 @@ body {
   position: relative;
   top: 0;
 }
-#timeline {
+.timeline {
   width: 95%;
   height: 1vh;
   margin: auto;
@@ -124,7 +124,7 @@ body {
   position: relative;
   top: 0;
 }
-#timeline-color {
+.timeline-progressBar {
   width: 0;
   margin: 0;
   height: 100%;
@@ -132,7 +132,7 @@ body {
   position: relative;
   top: 0;
 }
-#pointer {
+.pointer {
   width: 1vh;
   height: 1vh;
   position: absolute;
@@ -140,36 +140,51 @@ body {
   background-color: mediumseagreen;
 }
 
-#controls {
+.controls {
   display: block;
   width: 100%;
   text-align: center;
   margin: 2% auto;
   user-select: none;
 }
-#controls > span {
+.controls > span {
   font-size: 3vw;
   user-select: none;
   cursor: pointer;
 }
 
-#library {
+.library {
   grid-area: library;
 }
 
-#queue {
+.queue {
   grid-area: queue;
   border-right: 0.3vw solid var(--borderColor);
 }
 
-#wip {
+.wip {
   grid-area: wip;
   border-right: 0.3vw solid var(--borderColor);
   border-bottom: 0.3vw solid var(--borderColor);
 }
 
-#colors {
+.colors {
   grid-area: colors;
   border-right: 0.3vw solid var(--borderColor);
   border-bottom: 0.3vw solid var(--borderColor);
+}
+
+footer {
+  height: 5vh;
+  border-top: 0.3vw solid var(--borderColor);
+  text-align: center;
+}
+footer > a {
+  vertical-align: middle;
+  text-decoration: none;
+  color: var(--wrapperColor);
+}
+footer > a:active {
+  color: var(--tweaksColor);
+  text-shadow: 0 0 1vw var(--tweaksColor);
 }

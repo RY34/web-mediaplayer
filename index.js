@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let playBtn = document.querySelector("#play");
     let timeline = document.querySelector("#timeline");
-    let timelineColor = document.querySelector("#timeline-color");
+    let timelinePB = document.querySelector("#timeline-progressBar");
     let titleDisplay = document.querySelector("#titleDisplay");
     let timerDisplay = document.querySelector("#timer");
     
     const mediaplayer = new mediaplayerClass();
     Object.defineProperty(mediaplayer, "playBtn", { value: playBtn });
-    Object.defineProperty(mediaplayer, "timelineColor", { value: timelineColor });
+    Object.defineProperty(mediaplayer, "timelinePB", { value: timelinePB });
     Object.defineProperty(mediaplayer, "titleDisplay", { value: titleDisplay });
     Object.defineProperty(mediaplayer, "timeline", { value: timeline });
     Object.defineProperty(mediaplayer, "timerDisplay", { value: timerDisplay });
@@ -24,17 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
         this.volume = 0.1;
     });
         
-    mediaplayer.audio.addEventListener("ended", e => { //for now, to be changed later into module
+    mediaplayer.audio.addEventListener("ended", e => {
         
         mediaplayer.playBtn.innerHTML = "play_arrow";
-        timelineColor.style.width = "0%";
+        timelinePB.style.width = "0%";
         mediaplayer.audio.currentTime = 0;
         mediaplayer.timelineAnimation.currentTime = 0;
         mediaplayer.playing = false;
 
     });
-    
-    
 
     playBtn.addEventListener("click", function () { mediaplayer.playAudio() });
     
@@ -63,27 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     mediaplayer.audio.addEventListener("timeupdate", function () { mediaplayer.timer() });
-    mediaplayer.audio.addEventListener("play", function () { mediaplayer.timelineAnimation.play() });
-    mediaplayer.audio.addEventListener("pause", function () { mediaplayer.timelineAnimation.pause() });
-    /*this will be handler for changing colors of UI, left for later date
-    
-    let root = document.querySelector(":root");
-    let pinkBtn = document.querySelector("#pinkBtn");
-    let defaultBtn = document.querySelector("#defaultBtn");
-    let purpleBtn = document.querySelector("#purpleBtn");
-
-    pinkBtn.addEventListener("click", function () {
-    
-        root.style.setProperty("--wrapperBg", "#eb1ac4");
+    mediaplayer.audio.addEventListener("play", function () {
+        mediaplayer.timelineAnimation.play();
+        mediaplayer.playBtn.innerHTML = "pause";
     });
-
-    defaultBtn.addEventListener("click", function () {
-        
-        root.style.setProperty("--wrapperBg", "#2b3238");
+    mediaplayer.audio.addEventListener("pause", function () {
+        mediaplayer.timelineAnimation.pause();
+        mediaplayer.playBtn.innerHTML = "play_arrow";
     });
-
-    purpleBtn.addEventListener("click", function () {
-        
-        root.style.setProperty("--wrapperBg", "#b087dc")
-    })*/
 });

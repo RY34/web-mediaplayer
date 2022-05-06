@@ -9,7 +9,7 @@ function timelineAnimationSetUp(start, duration) {
             width: "100%"
         }
     ];
-    let kfe = new KeyframeEffect(this.timelineColor, keyframes, duration);
+    let kfe = new KeyframeEffect(this.timelinePB, keyframes, duration);
     
     let animation = new Animation(kfe);
 

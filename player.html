@@ -1,55 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="player-style.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="player-style.css">
     <script src="index.js" type="module"></script>
     <title>Mediaplayer UI - new concept</title>
 </head>
 <body>
-    <div id="wrapper">
-        <div class="el" id="search">
-            <div id="searchWrapper">
-                <div id="searchBar">
-                    <input type="text" placeholder="Search..." />
+    <main>
+        <section class="el search">
+                <div class="searchBar">
+                    <input type="search" placeholder="Search...">
                     <span class="material-icons">search</span>
                 </div>
-                <div id="searchOutput">
-                    
-                </div>
-            </div>
-        </div>
-        <div class="el" id="player">
-            <div id="playerWrapper">
-                <div id="titleDisplay">lorem - ipsum </div>
-                <div id="timelineWrapper">
-                    <div id="timeline">
-                        <div id="timeline-color">
-                            <div id="pointer"></div>
+                <div class="searchOutput"></div>
+        </section>
+        <section class="el player">
+                <div class="titleDisplay "id="titleDisplay">lorem - ipsum </div>
+                <section class="timelineWrapper">
+                    <div class="timeline"id="timeline">
+                        <div class="timeline-progressBar" id="timeline-progressBar">
+                            <div class="pointer"></div>
                         </div>
                     </div>
                     <span id="timer">0:00</span>
-                </div>
-                <div id="controls">
+                </section>
+                <section class="controls">
                     <span class="material-icons" id="shuffle">shuffle</span>
                     <span class="material-icons" id="previous">skip_previous</span>
                     <span class="material-icons" id="play">play_arrow</span>
                     <span class="material-icons" id="next">skip_next</span>
                     <span class="material-icons" id="loop">repeat</span>
-                </div>
-            </div>
-        </div>
-        <div class="el" id="library">Library</div>
-        <div class="el" id="queue">Queue</div>
-        <div class="el" id="wip">WIP</div>
-        <!--<div class="el" id="colors">
-            <span>Choose your color:</span>
-            <button id="pinkBtn">Pink</button>
-            <button id="defaultBtn">Default</button>
-            <button id="purpleBtn">Purple</button>
-        </div>-->
-    </div>    
+                </section>
+        </section>
+        <section class="el library">Library</section>
+        <section class="el queue">Queue</section>
+        <section class="el wip">WIP</section>
+    </main>
+    <footer>
+        <a href="https://github.com/RY34" target=”_blank”>GitHub</a>
+    </footer>
 </body>
 </html>

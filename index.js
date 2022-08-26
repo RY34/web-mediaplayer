@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let timelinePB = document.querySelector("#timeline-progressBar");
     let titleDisplay = document.querySelector("#titleDisplay");
     let timerDisplay = document.querySelector("#timer");
+    let volumeBtn = document.querySelector("#volume");
+    let volRange = document.querySelector("#vol-range");
     
     const mediaplayer = new mediaplayerClass();
     Object.defineProperty(mediaplayer, "playBtn", { value: playBtn });
@@ -21,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
         
         if(mediaplayer.timelineAnimation === null)
             mediaplayer.timelineAnimationSetUp(0, mediaplayer.audio.duration * 1000);
-        this.volume = 0.1;
+        this.volume = 0.5;
+        volRange.value = this.volume*100;
     });
         
     mediaplayer.audio.addEventListener("ended", e => {
@@ -69,4 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mediaplayer.timelineAnimation.pause();
         mediaplayer.playBtn.innerHTML = "play_arrow";
     });
+    volumeBtn.addEventListener("click", function () { /*mediaplayer.displayVolChange()*/ });
+    volRange.addEventListener("input", (e) => { mediaplayer.audio.volume = e.target.value/100 });
 });

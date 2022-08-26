@@ -36,6 +36,13 @@ main {
   box-sizing: border-box;
 }
 
+.dialog-window {
+  display: block;
+  position: absolute;
+  border: solid 0.3vw var(--borderColor);
+  top: 5%;
+}
+
 .search {
   grid-area: search;
   border-right: 0.3vw solid var(--borderColor);
@@ -136,21 +143,35 @@ main {
   width: 1vh;
   height: 1vh;
   position: absolute;
-  right: 0;
+  right: -1vh;
   background-color: mediumseagreen;
 }
 
 .controls {
-  display: block;
   width: 100%;
-  text-align: center;
-  margin: 2% auto;
   user-select: none;
 }
 .controls > span {
   font-size: 3vw;
   user-select: none;
+  margin: 0 1%;
   cursor: pointer;
+}
+
+.vol {
+  width: 30%;
+  position: relative;
+  text-align: left;
+}
+.vol > span {
+  font-size: 3vw;
+  margin: 0;
+}
+.vol > input[type=range] {
+  width: calc(100% - 3vw);
+  font-size: 2vw;
+  height: 3vw;
+  margin: 0;
 }
 
 .library {
